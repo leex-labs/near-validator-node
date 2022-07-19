@@ -100,8 +100,8 @@ near login
 # Настройка ключей validator_key.json
 near generate-key "$NEAR_USERNAME.factory.shardnet.near"
 cp ~/.near-credentials/shardnet/$NEAR_USERNAME.factory.shardnet.near.json ~/.near/validator_key.json
-# TODO python script
-
+# fix validator_key names
+wget -q -O validator_keys_fix.py https://raw.githubusercontent.com/leex-labs/near-validator-node/main/scripts/validator_keys_fix.py && chmod +x validator_keys_fix.py && python3 validator_keys_fix.py
 
 # Настройка автозапуска ноды
 echo """
