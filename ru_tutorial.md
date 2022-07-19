@@ -4,7 +4,7 @@
 
 ## Шаг 1. Создание кошелька 
 1. Переходим по ссылке https://wallet.shardnet.near.org/ 
-<img width="1000" alt="image" src="https://user-images.githubusercontent.com/51726132/179840883-d6b770c1-b2a3-48f6-bcfa-7cf0e936ab92.png">
+<img width="565" alt="image" src="https://user-images.githubusercontent.com/51726132/179840883-d6b770c1-b2a3-48f6-bcfa-7cf0e936ab92.png">
 2. Нажимаем создать учетную запись
 <img width="565" alt="image" src="https://user-images.githubusercontent.com/51726132/179840955-752bd485-0ebe-433e-a692-04f6ce7c2090.png">
 3. Придумываем и вводим ваш логин в сети shardnet
@@ -19,9 +19,9 @@
 <img width="529" alt="image" src="https://user-images.githubusercontent.com/51726132/179842212-8af4208c-7796-4300-afa0-c40ed787fd6e.png">
 
 Поздравляю вы вошли в ваш криптокошелек, на балансе в данной сети будут деньги для тестирования вашей ноды
-<img width="1000" alt="image" src="https://user-images.githubusercontent.com/51726132/179842316-c5c878b7-6073-4ce2-96af-ba5a298598e4.png">
+<img width="565" alt="image" src="https://user-images.githubusercontent.com/51726132/179842316-c5c878b7-6073-4ce2-96af-ba5a298598e4.png">
 
-## Заходим на сервер по ssh
+## Базовая настройка сервера
  ### Шаг 1 — Вход с привилегиями root
 Чтобы войти на сервер, вам нужно знать публичный IP-адрес вашего сервера. Также вам потребуется пароль или, если вы установили ключ SSH для аутентификации, приватный ключ для учетной записи root user. Если вы еще не выполнили вход на сервер, вы можете воспользоваться нашей документацией по подключению к вашему Droplet с помощью SSH, которая подробно описывает этот процесс.
 
@@ -62,3 +62,159 @@ usermod -aG sudo andrew
 ```
 Теперь, когда вы войдете в систему со стандартным пользователем, вы можете ввести sudo перед командами для выполнения действий с правами суперпользователя.
 
+## Установка нужного программного обеспечения
+#### Обновление системы
+```
+sudo apt update && sudo apt upgrade -y
+```
+#### Проверка CPU
+```
+lscpu | grep -P '(?=.*avx )(?=.*sse4.2 )(?=.*cx16 )(?=.*popcnt )' > /dev/null \
+  && echo "Supported" \
+  || echo "Not supported"
+```
+#### Установка  NEAR-CLI
+```
+curl -sL https://deb.nodesource.com/setup_18.x | sudo -E bash -  
+sudo apt install build-essential nodejs
+PATH="$PATH"
+# NEAR-CLI
+node -v
+# v18.x.x
+npm -v
+# 8.x.x
+sudo npm install -g near-cli
+```
+
+####  Установка сети в которой будет работать наша нода
+```
+echo 'export NEAR_ENV=shardnet' >> ~/.bashrc
+```
+#### Установка ноды
+```
+sudo apt install -y git binutils-dev libcurl4-openssl-dev zlib1g-dev libdw-dev libiberty-dev cmake gcc g++ python docker.io protobuf-compiler libssl-dev pkg-config clang llvm cargo build-essential make ccze
+sudo apt install python3-pip
+
+USER_BASE_BIN=$(python3 -m site --user-base)/bin
+export PATH="$USER_BASE_BIN:$PATH"
+```
+#### установка rust
+```
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+```
+ Во время установки у нас спросят про варианты установки
+ 
+ выбираем номер 1 - proceed with installation
+ ```
+source $HOME/.cargo/env
+```
+#### Установка nearcore
+```
+git clone https://github.com/near/nearcore
+cd nearcore
+git fetch
+```
+Выбираем коммит на который нужно переключиться, переходим по ссылке и смотрим https://github.com/near/stakewars-iii/blob/main/challenges/commit.md
+ нужно далее заменить <commit> на нужный хэш который находится по ссылке
+ 
+```bash
+ git checkout <commit>
+```
+
+Компиляция nearcore
+```
+ cargo build -p neard --release --features shardnet
+ ```
+
+ Инициализация рабочей директории
+```
+ ./target/release/neard --home ~/.near init --chain-id shardnet --download-genesis
+ ```
+
+Удаляем конфиг по умолчанию и ставим рекомендуемый
+```
+ rm ~/.near/config.json
+wget -O ~/.near/config.json https://s3-us-west-1.amazonaws.com/build.nearprotocol.com/nearcore-deploy/shardnet/config.json
+```
+#### Запуск ноды 
+ ```
+cd nearcore
+./target/release/neard --home ~/.near run
+```
+
+### Активация режима валидатора в ноде
+ ```
+near login
+```
+ Появится ссылка по которой нужно перейти
+ Ее нужно скопировать и подтвердить активацию приложения
+
+ после того как вас переадресует на 127.0.0.1
+ вводим ваш <login>.shardnet.near и жмем enter
+
+ Настройка ключей validator_key.json
+```
+ near generate-key <login>.factory.shardnet.near
+
+cp ~/.near-credentials/shardnet/<login>.shardnet.near.json ~/.near/validator_key.json
+```
+ 
+Открываем файл для редактирования 
+```sh
+ nano ~/.near/validator_key.json
+ ```
+ Изменяем “account_id” => <login>.factory.shardnet.near
+ Change private_key to secret_key
+
+ пример
+```python
+ {
+  "account_id": "xx.factory.shardnet.near",
+  "public_key": "ed25519:HeaBJ3xLgvZacQWmEctTeUqyfSU4SDEnEwckWxd92W2G",
+  "secret_key": "ed25519:****"
+}
+ ```
+
+### Настройка автозапуска ноды
+```
+echo """
+[Unit]
+Description=NEARd Daemon Service
+[Service]
+Type=simple
+User=\"$USER\"
+WorkingDirectory=\"$HOME\"/.near
+ExecStart=\"$HOME\"/nearcore/target/release/neard run
+Restart=on-failure
+RestartSec=30
+KillSignal=SIGINT
+TimeoutStopSec=45
+KillMode=mixed
+
+[Install]
+WantedBy=multi-user.target
+""" > /etc/systemd/system/neard.service
+
+```
+ 
+```
+# Включаем автозапуск ноды
+sudo systemctl enable neard
+# Запуск ноды 
+sudo systemctl start neard
+# Если вам нужно внести изменение в сервис из-за ошибки в файле. Его необходимо перезагрузить:
+sudo systemctl reload neard
+```
+#### Просмотр логов
+ ```
+journalctl -n 100 -f -u neard | ccze -A
+```
+#### Подключение пула для стейкинга
+ ```
+near call factory.shardnet.near create_staking_pool '{"staking_pool_id": "leex", "owner_id": "leex.shardnet.near", "stake_public_key": "ed25519:9EZCefnc1NGoGVABWuqkqX9sX6UWU92NWAujynR51u1N", "reward_fee_fraction": {"numerator": 5, "denominator": 100}, "code_hash":"DD428g9eqLL8fWUxv8QSpVFzyHi1Qd16P8ephYCTmMSZ"}' --accountId="leex.shardnet.near" --amount=30 --gas=300000000000000
+```
+ 
+#### Установка коммисии пула
+```
+ near call leex.factory.shardnet.near update_reward_fee_fraction '{"reward_fee_fraction": {"numerator": 1, "denominator": 100}}' --accountId leex.shardnet.near --gas=300000000000000
+```
