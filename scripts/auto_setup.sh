@@ -49,6 +49,8 @@ sudo apt install -y git binutils-dev libcurl4-openssl-dev zlib1g-dev libdw-dev l
 USER_BASE_BIN=$(python3 -m site --user-base)/bin
 export PATH="$USER_BASE_BIN:$PATH"
 
+sudo apt install -y clang build-essential make
+
 # установка rust
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
