@@ -14,7 +14,8 @@ if lscpu | grep -P -q '(?=.*avx )(?=.*sse4.2 )(?=.*cx16 )(?=.*popcnt )'
    then
       echo ""
    else
-      echo -e "\e[31mInstallation is not possible, your server does not support AVX2, change your server and try again.\e[39m"
+      echo -e "\e[31mInstallation is not possible, your server does not support AVX, change your server and try again.\e[39m"
+      exit
 fi
 
 if [ ! $NEAR_USERNAME ]; then
