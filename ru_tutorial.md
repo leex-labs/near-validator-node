@@ -20,6 +20,23 @@
 
 Поздравляю вы вошли в ваш криптокошелек, на балансе в данной сети будут деньги для тестирования вашей ноды
 <img width="565" alt="image" src="https://user-images.githubusercontent.com/51726132/179842316-c5c878b7-6073-4ce2-96af-ba5a298598e4.png">
+## Создание сервера на DigitalOcean
+<img width="1583" alt="image" src="https://user-images.githubusercontent.com/51726132/179858007-27cbba84-40c2-4cab-8e51-f23761943ea7.png">
+<img width="1257" alt="image" src="https://user-images.githubusercontent.com/51726132/179858100-582e7bde-85da-433d-97ce-26c522426da9.png">
+<img width="1263" alt="image" src="https://user-images.githubusercontent.com/51726132/179858113-76a9ecc4-59ae-4eb8-bc80-291166948964.png">
+<img width="1279" alt="image" src="https://user-images.githubusercontent.com/51726132/179858251-ea6cadc1-3325-425d-a46b-3e8551639f45.png">
+<img width="1313" alt="image" src="https://user-images.githubusercontent.com/51726132/179858267-84aef735-ca11-4dcd-8772-76ebb2e05c04.png">
+<img width="1335" alt="image" src="https://user-images.githubusercontent.com/51726132/179858304-b86fc71c-b68e-4019-a224-75b860f2efdb.png">
+<img width="1345" alt="image" src="https://user-images.githubusercontent.com/51726132/179858364-96f74165-06ba-4a54-ba6a-9d0a1d44a155.png">
+<img width="815" alt="image" src="https://user-images.githubusercontent.com/51726132/179858421-fcd03f55-3da5-4d49-8d38-66d5d740a5b0.png">
+wget -qO- https://repos-droplet.digitalocean.com/install.sh | sudo bash
+<img width="781" alt="image" src="https://user-images.githubusercontent.com/51726132/179858542-0d12b4e3-2846-4865-8628-17768b871750.png">
+<img width="617" alt="image" src="https://user-images.githubusercontent.com/51726132/179858585-7a53bdbd-ed4c-4bfa-be47-15fe7cff5ebe.png">
+1
+
+<img width="462" alt="image" src="https://user-images.githubusercontent.com/51726132/179859012-f26bdda4-0c9e-4837-84d5-882363a3ea23.png">
+<img width="451" alt="image" src="https://user-images.githubusercontent.com/51726132/179859041-d66e7be3-ffbe-473b-9625-10272bd8ff25.png">
+<img width="547" alt="image" src="https://user-images.githubusercontent.com/51726132/179859072-4955f06f-0279-4ac9-9792-85566e995a41.png">
 
 ## Базовая настройка сервера
  ### Шаг 1 — Вход с привилегиями root
