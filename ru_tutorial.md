@@ -168,21 +168,29 @@ USER_BASE_BIN=$(python3 -m site --user-base)/bin
 export PATH="$USER_BASE_BIN:$PATH"
 ```
 #### установка rust
+
+<img width="651" alt="Снимок экрана 2022-07-20 в 23 22 47" src="https://user-images.githubusercontent.com/51726132/180079297-532a8fe1-5a25-49d6-bd33-3b59414715ad.png">
+
+<img width="647" alt="Снимок экрана 2022-07-20 в 23 23 21" src="https://user-images.githubusercontent.com/51726132/180079098-97ffa43e-cadc-4b4c-9947-a8b56cac119e.png">
+
 ```
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 ```
  Во время установки у нас спросят про варианты установки
  
  выбираем номер 1 - proceed with installation
+ 
+ <img width="500" alt="Снимок экрана 2022-07-20 в 23 24 02" src="https://user-images.githubusercontent.com/51726132/180078966-27d2cf11-c0f3-454e-83c3-c25ea94ef201.png">
+ 
  ```
 source $HOME/.cargo/env
 ```
+
 #### Установка nearcore
 ```
-git clone https://github.com/near/nearcore
-cd nearcore
-git fetch
+git clone https://github.com/near/nearcore && cd nearcore && git fetch
 ```
+
 Выбираем коммит на который нужно переключиться, переходим по ссылке и смотрим 
 https://github.com/near/stakewars-iii/blob/main/commit.md
 
@@ -192,7 +200,12 @@ https://github.com/near/stakewars-iii/blob/main/commit.md
  git checkout <commit>
 ```
 
+<img width="657" alt="Снимок экрана 2022-07-20 в 23 26 01" src="https://user-images.githubusercontent.com/51726132/180079819-0f050993-67fc-4bc0-8cc9-0a3769175857.png">
+ 
 Компиляция nearcore
+ 
+ <img width="626" alt="Снимок экрана 2022-07-20 в 23 26 17" src="https://user-images.githubusercontent.com/51726132/180079913-6d4a9d31-3c46-4439-91b0-8192e663bc39.png">
+
 ```
  cargo build -p neard --release --features shardnet
  ```
@@ -201,18 +214,32 @@ https://github.com/near/stakewars-iii/blob/main/commit.md
 ```
  ./target/release/neard --home ~/.near init --chain-id shardnet --download-genesis
  ```
-
+<img width="649" alt="Снимок экрана 2022-07-20 в 23 43 35" src="https://user-images.githubusercontent.com/51726132/180079992-4ddc221b-d975-4c85-825b-07c2e07403c8.png">
+ 
+ 
 Удаляем конфиг по умолчанию и ставим рекомендуемый
+ 
 ```
- rm ~/.near/config.json
-wget -O ~/.near/config.json https://s3-us-west-1.amazonaws.com/build.nearprotocol.com/nearcore-deploy/shardnet/config.json
+rm ~/.near/config.json 
 ```
+
+ ```
+ wget -O ~/.near/config.json https://s3-us-west-1.amazonaws.com/build.nearprotocol.com/nearcore-deploy/shardnet/config.json
+```
+ 
+ <img width="647" alt="Снимок экрана 2022-07-20 в 23 43 55" src="https://user-images.githubusercontent.com/51726132/180080142-4e2e0639-5d6c-49e9-bfae-6649888e217a.png">
+
 #### Запуск ноды 
+
  ```
 cd nearcore
 ./target/release/neard --home ~/.near run
 ```
-
+ <img width="579" alt="Снимок экрана 2022-07-20 в 23 55 29" src="https://user-images.githubusercontent.com/51726132/180080499-8b57a50b-54b6-4447-818b-63375fb616a0.png">
+ 
+ Ждем пока пока не скачаются все блоки, в логах пишется процент загрузки **Downloading blocks 90.11%**
+ 
+ 
 ### Активация режима валидатора в ноде
  ```
 near login
@@ -280,6 +307,12 @@ sudo systemctl reload neard
  ```
 journalctl -n 100 -f -u neard | ccze -A
 ```
+#### Отправка заявления на вступление в пул валидаторов
+ Заявления валидатора указывает на то, что он хотел бы войти в пул валидаторов, чтобы заявление было принято, оно должно соответствовать минимальной цене места.
+ ```
+near proposals
+```
+ 
 #### Подключение пула для стейкинга
  ```
 near call factory.shardnet.near create_staking_pool '{"staking_pool_id": "leex", "owner_id": "leex.shardnet.near", "stake_public_key": "ed25519:9EZCefnc1NGoGVABWuqkqX9sX6UWU92NWAujynR51u1N", "reward_fee_fraction": {"numerator": 5, "denominator": 100}, "code_hash":"DD428g9eqLL8fWUxv8QSpVFzyHi1Qd16P8ephYCTmMSZ"}' --accountId="leex.shardnet.near" --amount=30 --gas=300000000000000
