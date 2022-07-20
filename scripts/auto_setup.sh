@@ -111,9 +111,9 @@ echo """
 Description=NEARd Daemon Service
 [Service]
 Type=simple
-User=\"$USER\"
-WorkingDirectory=\"$HOME\"/.near
-ExecStart=\"$HOME\"/nearcore/target/release/neard run
+User=$USER
+WorkingDirectory=$HOME/.near
+ExecStart=$HOME/nearcore/target/release/neard run
 Restart=on-failure
 RestartSec=30
 KillSignal=SIGINT
