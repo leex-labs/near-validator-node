@@ -342,5 +342,6 @@ near call factory.shardnet.near create_staking_pool '{"staking_pool_id": "<pool 
  
 #### Установка коммисии пула
 ```
- near call leex.factory.shardnet.near update_reward_fee_fraction '{"reward_fee_fraction": {"numerator": 1, "denominator": 100}}' --accountId leex.shardnet.near --gas=300000000000000
-```
+near call <pool_name> update_reward_fee_fraction '{"reward_fee_fraction": {"numerator": 1, "denominator": 100}}' --accountId <account_id> --gas=300000000000000
+  
+ ```
