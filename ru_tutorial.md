@@ -4,49 +4,90 @@
 
 ## Шаг 1. Создание кошелька 
 1. Переходим по ссылке https://wallet.shardnet.near.org/ 
-<img width="565" alt="image" src="https://user-images.githubusercontent.com/51726132/179840883-d6b770c1-b2a3-48f6-bcfa-7cf0e936ab92.png">
+
+<img width="500" alt="image" src="https://user-images.githubusercontent.com/51726132/179840883-d6b770c1-b2a3-48f6-bcfa-7cf0e936ab92.png">
+
 2. Нажимаем создать учетную запись
-<img width="565" alt="image" src="https://user-images.githubusercontent.com/51726132/179840955-752bd485-0ebe-433e-a692-04f6ce7c2090.png">
+
+<img width="500" alt="image" src="https://user-images.githubusercontent.com/51726132/179840955-752bd485-0ebe-433e-a692-04f6ce7c2090.png">
+
 3. Придумываем и вводим ваш логин в сети shardnet
-<img width="510" alt="image" src="https://user-images.githubusercontent.com/51726132/179841026-359146fe-5565-4e13-8583-872b6b968938.png">
+
+<img width="500" alt="image" src="https://user-images.githubusercontent.com/51726132/179841026-359146fe-5565-4e13-8583-872b6b968938.png">
+
 4. Выбираем предпочтительный способ защиты кошелька.Рекомендуется выбирать либо мнемоническую фразу, либо если у вас есть аппаратный криптокошелек ledger его
-<img width="531" alt="image" src="https://user-images.githubusercontent.com/51726132/179841912-9e610304-e020-4dd4-a9f1-0a343d4227f6.png">
+
+<img width="500" alt="image" src="https://user-images.githubusercontent.com/51726132/179841912-9e610304-e020-4dd4-a9f1-0a343d4227f6.png">
+
 Сохраняем мнемофразу, туда откуда ее не смогут украсть и где вы ее не потеряете 
-<img width="528" alt="image" src="https://user-images.githubusercontent.com/51726132/179841643-20e501db-26a3-4676-ac47-4e1982f998c8.png">
+
+<img width="500" alt="image" src="https://user-images.githubusercontent.com/51726132/179841643-20e501db-26a3-4676-ac47-4e1982f998c8.png">
+
 5. Выполяем проверку что вы верно запомнили мнемофразу
-<img width="514" alt="image" src="https://user-images.githubusercontent.com/51726132/179841694-e87754b3-ee6c-4eaf-a841-901cd6de339d.png">
-6.Далее, для входа в аккаунт вводим сохраненную мнемофразу
-<img width="529" alt="image" src="https://user-images.githubusercontent.com/51726132/179842212-8af4208c-7796-4300-afa0-c40ed787fd6e.png">
+
+<img width="500" alt="image" src="https://user-images.githubusercontent.com/51726132/179841694-e87754b3-ee6c-4eaf-a841-901cd6de339d.png">
+
+6. Далее, для входа в аккаунт вводим сохраненную мнемофразу
+
+<img width="500" alt="image" src="https://user-images.githubusercontent.com/51726132/179842212-8af4208c-7796-4300-afa0-c40ed787fd6e.png">
 
 Поздравляю вы вошли в ваш криптокошелек, на балансе в данной сети будут деньги для тестирования вашей ноды
-<img width="565" alt="image" src="https://user-images.githubusercontent.com/51726132/179842316-c5c878b7-6073-4ce2-96af-ba5a298598e4.png">
-## Создание сервера на DigitalOcean
-<img width="1583" alt="image" src="https://user-images.githubusercontent.com/51726132/179858007-27cbba84-40c2-4cab-8e51-f23761943ea7.png">
-<img width="1257" alt="image" src="https://user-images.githubusercontent.com/51726132/179858100-582e7bde-85da-433d-97ce-26c522426da9.png">
-<img width="1263" alt="image" src="https://user-images.githubusercontent.com/51726132/179858113-76a9ecc4-59ae-4eb8-bc80-291166948964.png">
-<img width="1279" alt="image" src="https://user-images.githubusercontent.com/51726132/179858251-ea6cadc1-3325-425d-a46b-3e8551639f45.png">
-<img width="1313" alt="image" src="https://user-images.githubusercontent.com/51726132/179858267-84aef735-ca11-4dcd-8772-76ebb2e05c04.png">
-<img width="1335" alt="image" src="https://user-images.githubusercontent.com/51726132/179858304-b86fc71c-b68e-4019-a224-75b860f2efdb.png">
-<img width="1345" alt="image" src="https://user-images.githubusercontent.com/51726132/179858364-96f74165-06ba-4a54-ba6a-9d0a1d44a155.png">
-<img width="815" alt="image" src="https://user-images.githubusercontent.com/51726132/179858421-fcd03f55-3da5-4d49-8d38-66d5d740a5b0.png">
-wget -qO- https://repos-droplet.digitalocean.com/install.sh | sudo bash
-<img width="781" alt="image" src="https://user-images.githubusercontent.com/51726132/179858542-0d12b4e3-2846-4865-8628-17768b871750.png">
-<img width="617" alt="image" src="https://user-images.githubusercontent.com/51726132/179858585-7a53bdbd-ed4c-4bfa-be47-15fe7cff5ebe.png">
-1
 
-<img width="462" alt="image" src="https://user-images.githubusercontent.com/51726132/179859012-f26bdda4-0c9e-4837-84d5-882363a3ea23.png">
-<img width="451" alt="image" src="https://user-images.githubusercontent.com/51726132/179859041-d66e7be3-ffbe-473b-9625-10272bd8ff25.png">
-<img width="547" alt="image" src="https://user-images.githubusercontent.com/51726132/179859072-4955f06f-0279-4ac9-9792-85566e995a41.png">
+<img width="500" alt="image" src="https://user-images.githubusercontent.com/51726132/179842316-c5c878b7-6073-4ce2-96af-ba5a298598e4.png">
+
+## Создание сервера на DigitalOcean
+1. Регистрируемся в DigitalOcean
+2. Переходим во вкладку Droplets для создания вашего сервера
+3. Выбираем create Droplet
+
+
+<img width="500" alt="image" src="https://user-images.githubusercontent.com/51726132/179858007-27cbba84-40c2-4cab-8e51-f23761943ea7.png">
+4. Выбираем операционную систему, в нашем случае Ubuntu 22.04
+5. Выбираем тариф с достаточным кол-вом памяти 600GB SSD (рекомендуется 500, но мы взяли с запасом)
+
+<img width="500" alt="image" src="https://user-images.githubusercontent.com/51726132/179858100-582e7bde-85da-433d-97ce-26c522426da9.png">
+6. Выбираем регион расположения дата центра, можно выбрать тот который расположен в европе, серверной америке и тд. Рекомендую выбирать тот который расположен в европе, так как мы знаем что американцы не очень хорошо относятся к криптовалютам и вероятно тут будет меньше клиентов
+
+<img width="500" alt="image" src="https://user-images.githubusercontent.com/51726132/179858113-76a9ecc4-59ae-4eb8-bc80-291166948964.png">
+7. Добавляем способо авторизации. Рекомендуется ssh keys так как это более надежный и безопасный способ. Но для начала можно выбрать авторизацию по паролю и позже подключить рекомендуемую.
+Так же рекомундую поставить мониторинг для отслеживания показателей сервера. Но для этого придется поставить еще один скрипт для установки агента, отслеживающего показатели (рассмотрим далее)
+
+<img width="500" alt="image" src="https://user-images.githubusercontent.com/51726132/179858251-ea6cadc1-3325-425d-a46b-3e8551639f45.png">
+
+8. Мы подошли к финальному шагу, теперь жмем create droplet.
+
+<img width="500" alt="image" src="https://user-images.githubusercontent.com/51726132/179858267-84aef735-ca11-4dcd-8772-76ebb2e05c04.png">
+
+9. Ждем пару минут и сервер создастся.
+
+<img width="500" alt="image" src="https://user-images.githubusercontent.com/51726132/179858304-b86fc71c-b68e-4019-a224-75b860f2efdb.png">
+10. После создания сервер копируем **ip адрес** сервера
+
+<img width="500" alt="image" src="https://user-images.githubusercontent.com/51726132/179858364-96f74165-06ba-4a54-ba6a-9d0a1d44a155.png">
+<img width="500" alt="image" src="https://user-images.githubusercontent.com/51726132/179858421-fcd03f55-3da5-4d49-8d38-66d5d740a5b0.png">
+
+скрипт для установки мониторинга на сервере
+
+```bash
+wget -qO- https://repos-droplet.digitalocean.com/install.sh | sudo bash
+```
 
 ## Базовая настройка сервера
  ### Шаг 1 — Вход с привилегиями root
+ 
+ <img width="500" alt="image" src="https://user-images.githubusercontent.com/51726132/179858542-0d12b4e3-2846-4865-8628-17768b871750.png">
+ 
 Чтобы войти на сервер, вам нужно знать публичный IP-адрес вашего сервера. Также вам потребуется пароль или, если вы установили ключ SSH для аутентификации, приватный ключ для учетной записи root user. Если вы еще не выполнили вход на сервер, вы можете воспользоваться нашей документацией по подключению к вашему Droplet с помощью SSH, которая подробно описывает этот процесс.
 
 Если вы еще не подключились к серверу, выполните вход в систему как root user, используя следующую команду (замените выделенную часть команды на публичный IP-адрес вашего сервера):
+
 ```bash
 ssh root@your_server_ip
 ```
+
 Примите предупреждение об аутентичности хоста, если оно появится на экране. Если вы используете аутентификацию по паролю, укажите пароль root для входа в систему. Если вы используете ключ SSH с защитой по фразе-паролю, вам может быть предложено ввести фразу-пароль в первый раз при использовании ключа в каждом сеансе. Если вы первый раз выполняете вход на сервер с помощью пароля, вам также может быть предложено изменить пароль root.
+
+<img width="500" alt="image" src="https://user-images.githubusercontent.com/51726132/179858585-7a53bdbd-ed4c-4bfa-be47-15fe7cff5ebe.png">
 
 #### Подробнее о root
 root user — это пользователь с правами администратора в среде Linux, который имеет очень широкий набор привилегий. Из-за такого широкого набора привилегий учетной записи root не рекомендуется использовать ее на регулярной основе. Это связано с тем, что часть возможностей, получаемых с помощью учетной записи root, включает возможность внесения очень разрушительных изменений, даже если это происходит непреднамеренно.
@@ -54,7 +95,8 @@ root user — это пользователь с правами админист
 В следующем шаге будет настраиваться новая учетная запись пользователя с ограниченными привилегиями для повседневного использования. Позже мы расскажем о том, как получить расширенные привилегии только на то время, когда они необходимы.
 
 ### Шаг 2 — Создание нового пользователя
-
+<img width="462" alt="image" src="https://user-images.githubusercontent.com/51726132/179859012-f26bdda4-0c9e-4837-84d5-882363a3ea23.png">
+<
 После входа в систему с правами root мы готовы добавить новую учетную запись пользователя. В будущем мы выполним вход с помощью этой новой учетной записи, а не с правами root.
 
 Этот пример создает нового пользователя с именем andrew, но вы должны заменить это имя на имя, которое вам нравится:
@@ -66,6 +108,7 @@ adduser andrew
 Введите надежный пароль и введите по желанию любую дополнительную информацию. Это делать необязательно, и вы можете нажать **ENTER** в любом поле, которое вы хотите пропустить.
 
 ### Шаг 3 — Предоставление административных прав
+<img width="451" alt="image" src="https://user-images.githubusercontent.com/51726132/179859041-d66e7be3-ffbe-473b-9625-10272bd8ff25.png">
 
 Теперь у нас есть новая учетная запись пользователя со стандартными правами. Однако иногда может потребоваться выполнение административных задач.
 
@@ -77,6 +120,15 @@ adduser andrew
 ```bash
 usermod -aG sudo andrew
 ```
+
+Для смены аккаунта можно воспользоваться следующей командой 
+```
+sudo su - andrew
+```
+andrew - заменить на ваш логин, который вы придумали на шаге выше
+
+ <img width="500" alt="image" src="https://user-images.githubusercontent.com/51726132/179859072-4955f06f-0279-4ac9-9792-85566e995a41.png">
+ 
 Теперь, когда вы войдете в систему со стандартным пользователем, вы можете ввести sudo перед командами для выполнения действий с правами суперпользователя.
 
 ## Установка нужного программного обеспечения
@@ -131,8 +183,10 @@ git clone https://github.com/near/nearcore
 cd nearcore
 git fetch
 ```
-Выбираем коммит на который нужно переключиться, переходим по ссылке и смотрим https://github.com/near/stakewars-iii/blob/main/challenges/commit.md
- нужно далее заменить <commit> на нужный хэш который находится по ссылке
+Выбираем коммит на который нужно переключиться, переходим по ссылке и смотрим 
+https://github.com/near/stakewars-iii/blob/main/commit.md
+
+нужно далее заменить <commit> на нужный хэш который находится по ссылке
  
 ```bash
  git checkout <commit>
