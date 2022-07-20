@@ -274,15 +274,21 @@ cp ~/.near-credentials/shardnet/<login>.shardnet.near.json ~/.near/validator_key
  ```
 
 ### Настройка автозапуска ноды
+ Следующий код нужно вставить в **/etc/systemd/system/neard.service** и заменить $USER на текущего пользователя операционной системы(не near логин)
+
+ $HOME заменить на путь до папки пользователя
+ Можно вписать этот код в терминал и узнать расположение папки
+ 
+ <img width="281" alt="Снимок экрана 2022-07-21 в 00 40 58" src="https://user-images.githubusercontent.com/51726132/180087150-9fb2f293-da8d-4834-85bd-d423e99b2138.png">
+
 ```
-echo """
 [Unit]
 Description=NEARd Daemon Service
 [Service]
 Type=simple
-User=\"$USER\"
-WorkingDirectory=\"$HOME\"/.near
-ExecStart=\"$HOME\"/nearcore/target/release/neard run
+User=$USER
+WorkingDirectory=$HOME/.near
+ExecStart=$HOME/nearcore/target/release/neard run
 Restart=on-failure
 RestartSec=30
 KillSignal=SIGINT
@@ -291,10 +297,16 @@ KillMode=mixed
 
 [Install]
 WantedBy=multi-user.target
-""" > /etc/systemd/system/neard.service
 
 ```
  
+ ```
+sudo nano /etc/systemd/system/neard.service
+ Для выходы жмем **ctrl+X** и потом жмем **Y**
+ Получится как на скриншоте ниже
+ ```
+ <img width="404" alt="Снимок экрана 2022-07-21 в 00 41 38" src="https://user-images.githubusercontent.com/51726132/180087241-61a78e8f-4561-4566-bd4b-9f60e364a967.png">
+
 ```
 # Включаем автозапуск ноды
 sudo systemctl enable neard
