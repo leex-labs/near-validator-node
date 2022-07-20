@@ -326,9 +326,19 @@ near proposals
 ```
  
 #### Подключение пула для стейкинга
+ <public_key> - берем из /.near/validation_keys.json
  ```
-near call factory.shardnet.near create_staking_pool '{"staking_pool_id": "leex", "owner_id": "leex.shardnet.near", "stake_public_key": "ed25519:9EZCefnc1NGoGVABWuqkqX9sX6UWU92NWAujynR51u1N", "reward_fee_fraction": {"numerator": 5, "denominator": 100}, "code_hash":"DD428g9eqLL8fWUxv8QSpVFzyHi1Qd16P8ephYCTmMSZ"}' --accountId="leex.shardnet.near" --amount=30 --gas=300000000000000
+near call factory.shardnet.near create_staking_pool '{"staking_pool_id": "<pool id>", "owner_id": "<accountId>", "stake_public_key": "<public key>", "reward_fee_fraction": {"numerator": 5, "denominator": 100}, "code_hash":"DD428g9eqLL8fWUxv8QSpVFzyHi1Qd16P8ephYCTmMSZ"}' --accountId="<accountId>" --amount=30 --gas=300000000000000
+
 ```
+  
+В приведенном выше примере вам нужно заменить:
+  - Идентификатор пула: имя пула ставок, фабрика автоматически добавляет свое имя к этому параметру, создавая {pool_id}. {staking_pool_factory} 
+    Примеры: Если id пула — stackwars, то он создаст: stackwars.factory.shardnet.near 
+  - Идентификатор владельца: учетная запись SHARDNET (т. е. Stawares.shardnet.near), которая будет управлять пулом ставок. 
+  - Открытый ключ: открытый ключ в вашем файле validator_key.json. 
+  - 5: комиссия, которую будет взимать пул (например, в этом случае 5 больше 100 составляет 5% от комиссии). 
+  - Идентификатор учетной записи: учетная запись SHARDNET, развертывающая и подписывающая mount tx. Обычно совпадает с идентификатором владельца.
  
 #### Установка коммисии пула
 ```
