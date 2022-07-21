@@ -1,18 +1,20 @@
-## Установка нужного программного обеспечения
+# Установка нужного программного обеспечения
 
-#### Обновление системы
+## Обновление системы
 ```bash
 sudo apt update && sudo apt upgrade -y
 ```
 
-#### Проверка CPU
+## Проверка CPU
 ```bash
 lscpu | grep -P '(?=.*avx )(?=.*sse4.2 )(?=.*cx16 )(?=.*popcnt )' > /dev/null \
   && echo "Supported" \
   || echo "Not supported"
 ```
 
-#### Установка  NEAR-CLI
+## Установка  NEAR-CLI
+> Примечание. Из соображений безопасности рекомендуется установить NEAR-CLI на компьютер, отличный от вашего узла валидатора, и чтобы на вашем узле валидатора не хранились ключи полного доступа.
+
 Вводим следующие команды по очереди:
 
 ```bash
@@ -28,17 +30,25 @@ PATH="$PATH"
 sudo npm install -g near-cli
 ```
 
-####  Установка сети в которой будет работать наша нода
+##  Установка сети в которой будет работать наша нода
 ```bash
 echo 'export NEAR_ENV=shardnet' >> ~/.bashrc
 ```
 
-#### Установка ноды
+## Установка ноды
+По очереди вводим следующие команды
 ```bash
-sudo apt install -y git binutils-dev libcurl4-openssl-dev zlib1g-dev libdw-dev libiberty-dev cmake gcc g++ python docker.io protobuf-compiler libssl-dev pkg-config clang llvm cargo build-essential make ccze
-
+sudo apt install -y git binutils-dev libcurl4-openssl-dev zlib1g-dev libdw-dev libiberty-dev cmake gcc g++ python docker.io protobuf-compiler libssl-dev pkg-config clang llvm cargo
+```
+```bash
 sudo apt install python3-pip
+```
+```bash
+sudo apt install clang build-essential make
+```
 
+Установите конфигурацию:
+```bash
 USER_BASE_BIN=$(python3 -m site --user-base)/bin
 export PATH="$USER_BASE_BIN:$PATH"
 ```
@@ -61,7 +71,9 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 source $HOME/.cargo/env
 ```
 
-#### Установка nearcore
+
+### Установка nearcore
+
 ```bash
 git clone https://github.com/near/nearcore && cd nearcore && git fetch
 
@@ -70,7 +82,7 @@ git clone https://github.com/near/nearcore && cd nearcore && git fetch
 Выбираем коммит на который нужно переключиться, переходим по ссылке и смотрим 
 https://github.com/near/stakewars-iii/blob/main/commit.md
 
-далее нужно  заменить \<commit\> на нужный хэш который находится по ссылке
+далее нужно  заменить \<commit\> на хэш который находится по ссылке
 
 ```bash
  git checkout <commit>
@@ -86,8 +98,19 @@ https://github.com/near/stakewars-iii/blob/main/commit.md
  cargo build -p neard --release --features shardnet
  ```
 
- Инициализация рабочей директории
+ ### Инициализация рабочей директории
+
+ Эта команда создаст структуру каталогов и сгенерирует config.json, node_key.json и genesis.json в сети, через которую вы прошли. 
+
+**config.json **— параметры конфигурации, которые реагируют на то, как будет работать узел. config.json содержит необходимую информацию для работы узла в сети, как общаться с одноранговыми узлами и как достичь консенсуса. Хотя некоторые параметры настраиваются. Обычно валидаторы предпочитают использовать предоставленный по умолчанию файл config.json.
+
+**genesis.json** — файл со всеми данными, с которых началась сеть при генезисе. Он содержит начальные учетные записи, контракты, ключи доступа и другие записи, которые представляют начальное состояние блокчейна. Файл genesis.json представляет собой снимок состояния сети в определенный момент времени. В контактах аккаунты, балансы, активные валидаторы и прочая информация о сети.
+
+ **node_key.json** — файл, содержащий открытый и закрытый ключи для узла. Также включает необязательный параметр account_id, необходимый для запуска узла проверки (не рассматривается в этом документе). 
  
+ **data/** - Папка, в которую узел NEAR будет записывать свое состояние.
+
+
 ```bash
  ./target/release/neard --home ~/.near init --chain-id shardnet --download-genesis
  ```
@@ -95,7 +118,7 @@ https://github.com/near/stakewars-iii/blob/main/commit.md
 <img width="649" alt="Снимок экрана 2022-07-20 в 23 43 35" src="https://user-images.githubusercontent.com/51726132/180079992-4ddc221b-d975-4c85-825b-07c2e07403c8.png">
  
  
-Удаляем конфиг по умолчанию и ставим рекомендуемый
+#### Удаляем конфиг по умолчанию и ставим рекомендуемый
  
 ```bash
 rm ~/.near/config.json 
@@ -107,7 +130,7 @@ rm ~/.near/config.json
  
  <img width="647" alt="Снимок экрана 2022-07-20 в 23 43 55" src="https://user-images.githubusercontent.com/51726132/180080142-4e2e0639-5d6c-49e9-bfae-6649888e217a.png">
 
-#### Запуск ноды 
+## Запуск ноды 
 
  ```bash
 cd nearcore
@@ -115,6 +138,7 @@ cd nearcore
 
 ```
  <img width="579" alt="Снимок экрана 2022-07-20 в 23 55 29" src="https://user-images.githubusercontent.com/51726132/180080499-8b57a50b-54b6-4447-818b-63375fb616a0.png">
+ 
  
  Ждем пока пока не скачаются все блоки, в логах пишется процент загрузки **Downloading blocks 90.11%**
  
@@ -130,14 +154,14 @@ cd nearcore
 
  после того как вас переадресует на 127.0.0.1
  вводим ваш \<login\>.shardnet.near и жмем enter
-``
- Настройка ключей validator_key.json
-```
- near generate-key <login>.factory.shardnet.near
 
+ Настройка ключей validator_key.json
+```bash
+ near generate-key <login>.factory.shardnet.near
+```
+```bash
 cp ~/.near-credentials/shardnet/<login>.shardnet.near.json ~/.near/validator_key.json
 ```
- ``
 Открываем файл для редактирования 
 
 ```sh
@@ -198,20 +222,22 @@ sudo systemctl start neard
 sudo systemctl reload neard
 ```
 
-#### Просмотр логов
+### Просмотр логов
 
  ```bash
  journalctl -n 100 -f -u neard | ccze -A
 ```
-#### Отправка заявления на вступление в пул валидаторов
+### Отправка заявления на вступление в пул валидаторов
  Заявления валидатора указывает на то, что он хотел бы войти в пул валидаторов, чтобы заявление было принято, оно должно соответствовать минимальной цене места.
  
  ```bash
 near proposals
 ```
  
-#### Подключение пула для стейкинга
+### Подключение пула для стейкинга
+
  <public_key> - берем из /.near/validation_keys.json
+
  ```bash
 near call factory.shardnet.near create_staking_pool '{"staking_pool_id": "<pool id>", "owner_id": "<accountId>", "stake_public_key": "<public key>", "reward_fee_fraction": {"numerator": 5, "denominator": 100}, "code_hash":"DD428g9eqLL8fWUxv8QSpVFzyHi1Qd16P8ephYCTmMSZ"}' --accountId="<accountId>" --amount=30 --gas=300000000000000
 
@@ -229,6 +255,53 @@ near call factory.shardnet.near create_staking_pool '{"staking_pool_id": "<pool 
  
  
  #### Установка коммисии пула
+
 ```bash
 near call <pool_name> update_reward_fee_fraction '{"reward_fee_fraction": {"numerator": 1, "denominator": 100}}' --accountId <account_id> --gas=300000000000000
  ```
+
+
+Для того чтобы появится в списке валидаторов нужно выполнить пинг
+
+```bash
+near call <staking_pool_id> ping '{}' --accountId <accountId> --gas=300000000000000
+```
+
+
+Другие команды:
+
+Просмотр Баланса
+
+
+команда:
+```
+near view <staking_pool_id> get_account_total_balance '{"account_id": "<accountId>"}'
+```
+#####  Просмотр застейканного баланса
+
+команда:
+```
+near view <staking_pool_id> get_account_staked_balance '{"account_id": "<accountId>"}'
+```
+##### Убрать средства из стейкнигна
+команда:
+```
+near view <staking_pool_id> get_account_unstaked_balance '{"account_id": "<accountId>"}'
+```
+##### Снятие средств
+команда:
+```
+near view <staking_pool_id> is_account_unstaked_balance_available '{"account_id": "<accountId>"}'
+```
+##### Пауза / Возобновление Стейкинга
+
+###### Пауза
+команда:
+```
+near call <staking_pool_id> pause_staking '{}' --accountId <accountId>
+```
+###### Возобновление
+команда:
+```
+near call <staking_pool_id> resume_staking '{}' --accountId <accountId>
+```
