@@ -305,3 +305,65 @@ near call <staking_pool_id> pause_staking '{}' --accountId <accountId>
 ```
 near call <staking_pool_id> resume_staking '{}' --accountId <accountId>
 ```
+
+
+## Мониторинг
+
+
+### Оповещения
+
+Уведомление по электронной почте может сделать работу валидатора более удобной. 
+
+Системная команда:
+```
+journalctl -n 100 -f -u neard | ccze -A
+```
+
+**Пример лога:**
+
+Validator | 1 validator
+
+```
+INFO stats: #85079829 H1GUabkB7TW2K2yhZqZ7G47gnpS7ESqicDMNyb9EE6tf Validator 73 validators 30 peers ⬇ 506.1kiB/s ⬆ 428.3kiB/s 1.20 bps 62.08 Tgas/s CPU: 23%, Mem: 7.4 GiB
+```
+
+* **Validator**:  “Validator” укажет, что вы являетесь активным валидатором.
+* **73 validators**: всего 73 валидатора в сети
+* **30 peers**: у вас сейчас 30 пиров. Вам нужно как минимум 3 пира, чтобы достичь консенсуса и начать проверку
+* **#46199418**: block – следите за тем, чтобы блоки двигались
+
+#### RPC
+Любой узел в сети предлагает службы RPC через порт 3030, если этот порт открыт в брандмауэре. NEAR-CLI использует вызовы RPC. Обычно RPC используется для проверки статистики валидатора, версии узла и просмотра доли делегатора, хотя его можно использовать для взаимодействия с блокчейном, учетными записями и контрактами в целом.
+
+
+https://docs.near.org/docs/api/rpc
+
+
+
+Command:
+```
+sudo apt install curl jq
+```
+###### Общие команды:
+####### Проверьте версию вашего узла:
+Команда:
+```
+curl -s http://127.0.0.1:3030/status | jq .version
+```
+####### Проверка Delegators и Stake
+команда:
+```
+near view <your pool>.factory.shardnet.near get_accounts '{"from_index": 0, "limit": 10}' --accountId <accountId>.shardnet.near
+```
+####### Проверить причину выхода валидатора из пула вадидаторов
+команда:
+```
+curl -s -d '{"jsonrpc": "2.0", "method": "validators", "id": "dontcare", "params": [null]}' -H 'Content-Type: application/json' 127.0.0.1:3030 | jq -c '.result.prev_epoch_kickout[] | select(.account_id | contains ("<POOL_ID>"))' | jq .reason
+```
+####### Проверка созданных/ожидаемых блоков
+команда:
+```
+curl -s -d '{"jsonrpc": "2.0", "method": "validators", "id": "dontcare", "params": [null]}' -H 'Content-Type: application/json' 127.0.0.1:3030 | jq -c '.result.current_validators[] | select(.account_id | contains ("POOL_ID"))'
+```
+
+
