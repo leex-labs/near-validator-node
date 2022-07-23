@@ -65,7 +65,7 @@ git fetch
 
 # Выбираем коммит на который нужно переключиться, переходим по ссылке и смотрим https://github.com/near/stakewars-iii/blob/main/challenges/commit.md
 # нужно далее заменить <commit> на нужный хэш который находится по ссылке
-git checkout $(curl https://raw.githubusercontent.com/near/stakewars-iii/main/challenges/commit.md)
+git checkout $(curl https://raw.githubusercontent.com/near/stakewars-iii/main/commit.md)
 
 # Компиляция nearcore
 cargo build -p neard --release --features shardnet
