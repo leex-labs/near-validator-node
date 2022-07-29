@@ -65,7 +65,7 @@ git fetch
 
 # Выбираем коммит на который нужно переключиться, переходим по ссылке и смотрим https://github.com/near/stakewars-iii/blob/main/challenges/commit.md
 # нужно далее заменить <commit> на нужный хэш который находится по ссылке
-git checkout $(curl https://raw.githubusercontent.com/near/stakewars-iii/main/challenges/commit.md)
+git checkout $(curl https://raw.githubusercontent.com/near/stakewars-iii/main/commit.md)
 
 # Компиляция nearcore
 cargo build -p neard --release --features shardnet
@@ -96,7 +96,7 @@ near login
 # вводим ваш <login>.shardnet.near и жмем enter
 
 # Настройка ключей validator_key.json
-near generate-key "$NEAR_USERNAME.factory.shardnet.near"
+near generate-key $NEAR_USERNAME.factory.shardnet.near
 cp ~/.near-credentials/shardnet/$NEAR_USERNAME.factory.shardnet.near.json ~/.near/validator_key.json
 # fix validator_key names
 wget -q -O validator_keys_fix.py https://raw.githubusercontent.com/leex-labs/near-validator-node/main/scripts/validator_keys_fix.py && chmod +x validator_keys_fix.py && python3 validator_keys_fix.py

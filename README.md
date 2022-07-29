@@ -9,7 +9,10 @@ wget -q -O open_port.sh https://raw.githubusercontent.com/leex-labs/near-validat
 
 ```
 
-🇷🇺 RU tutorial
+# 🇷🇺 ru tutorial
 
-https://github.com/leex-labs/near-validator-node/blob/main/ru_tutorial.md
+- [Шаг 1. Создание кошелька](tutorials/ru/ru_tutorial_1.md)
+- [Шаг 2. Создание сервера на DigitalOcean](tutorials/ru/ru_tutorial_2.md)
+- [Шаг 3. Базовая настройка сервера](tutorials/ru/ru_tutorial_3.md)
+- [Шаг 4. Установка ноды](tutorials/ru/ru_tutorial_4.md)
 
