@@ -77,10 +77,6 @@ cargo build -p neard --release --features shardnet
 rm ~/.near/config.json
 wget -O ~/.near/config.json https://s3-us-west-1.amazonaws.com/build.nearprotocol.com/nearcore-deploy/shardnet/config.json
 
-# Запуск ноды 
-./target/release/neard --home ~/.near run
-
-
 # Активация режима валидатора в ноде
 echo """
 #       #######  #####  ### #     # 
