@@ -2,7 +2,11 @@
 
 DATE=$(date +%Y-%m-%d-%H-%M)
 ARCHIVE_NAME="${DATE}.tar.gz"
+
+# What to backup. 
 DATADIR=~/.near
+
+# Where to backup to.
 ALL_BACKUP_DIR=~/backups/
 mkdir $ALL_BACKUP_DIR
 
