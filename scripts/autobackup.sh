@@ -20,6 +20,7 @@ if [ -d "$ALL_BACKUP_DIR" ]; then
     echo "Backup started" | ts
     tar -czv -f ${ARCHIVE_NAME} $DATADIR/data/
     mv ${ARCHIVE_NAME} $ALL_BACKUP_DIR/
+    cd $ALL_BACKUP_DIR
     rm $(ls -1t $ALL_BACKUP_DIR | tail -n +2)
     # Submit backup completion status, you can use healthchecks.io, betteruptime.com or other services
     # Example
