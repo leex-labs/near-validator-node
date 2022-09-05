@@ -3,9 +3,7 @@
 DATE=$(date +%Y-%m-%d-%H-%M)
 ARCHIVE_NAME="${DATE}.tar.gz"
 DATADIR=~/.near
-BACKUPDIR=~/.near-backup
 ALL_BACKUP_DIR=~/backups/
-mkdir $BACKUPDIR
 mkdir $ALL_BACKUP_DIR
 
 sudo systemctl stop neard.service
@@ -14,7 +12,7 @@ wait
 
 echo "NEAR node was stopped" | ts
 
-if [ -d "$BACKUPDIR" ]; then
+if [ -d "$ALL_BACKUP_DIR" ]; then
     echo "Backup started" | ts
     tar -czv -f ${ARCHIVE_NAME} $DATADIR/data/
     mv ${ARCHIVE_NAME} $ALL_BACKUP_DIR/
@@ -25,7 +23,7 @@ if [ -d "$BACKUPDIR" ]; then
 
     echo "Backup completed" | ts
 else
-    echo $BACKUPDIR is not created. Check your permissions.
+    echo $ALL_BACKUP_DIR is not created. Check your permissions.
     exit 0
 fi
 
